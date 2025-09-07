@@ -1,10 +1,10 @@
-from http.client import HTTPException
+
 from pydantic import BaseModel, ValidationError,Field
 import pandas as pd
 
 import numpy as np
 import pickle
-from fastapi import HTTPException
+
 from res import apiresponse,apierror
 
 
@@ -30,7 +30,7 @@ class HeartData(BaseModel):
     ca: int = Field(..., ge=0, le=4, description="Number of major vessels colored by fluoroscopy (0-4)")
     thal: int = Field(..., ge=0, le=3, description="Thalassemia (0 = normal, 1 = fixed defect, 2 = reversible defect, 3 = unknown)")
 
-def predict_heart_disease(data):
+async def predict_heart_disease(data):
     try:
         hd_data = HeartData(**data)
     except ValidationError as e:

@@ -3,9 +3,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin,ClassifierMixin
 import re
 import string
-
-
-
+from textblob import TextBlob
 import spacy
 
 
@@ -54,7 +52,11 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
         words = [self.chat_words.get(w, w) for w in words]
         text = " ".join(words)
         
-        # 10. Tokenization + Stopword removal + Lemmatization
+        #10 auto correct using textblob
+        if text.strip():
+            text = str(TextBlob(text).correct())
+        
+        # 11. Tokenization + Stopword removal + Lemmatization
         doc = nlp(text)
         tokens=[]
         for token in doc:

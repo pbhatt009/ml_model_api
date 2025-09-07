@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 import pandas as pd
 import numpy as np
 from heart_disease.ht import predict_heart_disease as hdp
+load_dotenv()
 app = FastAPI()
 origins = [
     os.getenv("FRONT")
@@ -20,7 +22,7 @@ app.add_middleware(
 
 @app.get("/")
 def welcome():
-    return "Welcome to Heart Disease Prediction API"
+    return f"Welcome to Heart Disease Prediction API {os.getenv('FRONT')}"
 
 
 @app.post(

@@ -33,7 +33,7 @@ def predict_heart_disease(data):
     try:
         hd_data = HeartData(**data)
     except ValidationError as e:
-        raise HTTPException(status_code=422, detail={"errors":{"status code":422,"message": e.errors()[0]['msg']},"data":None})
+        return {"detail":{"errors":{"status code":422,"message": e.errors()[0]['msg']},"data":None}}
     df = pd.DataFrame([hd_data.model_dump()])
     prediction = model.predict_proba(df).tolist()
     return {"detail":{"data":{"status code":200,"prediction":prediction,"message":"Prediction successful"},"errors":None}}

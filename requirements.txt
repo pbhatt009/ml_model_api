@@ -3,3 +3,5 @@ uvicorn
 pydantic
 pandas
 numpy
+python-dotenv
+scikit-learn

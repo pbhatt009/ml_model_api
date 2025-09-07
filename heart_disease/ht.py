@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from fastapi import HTTPException
+from res import apiresponse,apierror
 
 
 def load():
@@ -33,8 +34,8 @@ def predict_heart_disease(data):
     try:
         hd_data = HeartData(**data)
     except ValidationError as e:
-        return {"detail":{"errors":{"status code":422,"message": e.errors()[0]['msg']},"data":None}}
+        return apierror(422,e.errors()[0]['msg'])
     df = pd.DataFrame([hd_data.model_dump()])
     prediction = model.predict_proba(df).tolist()
-    return {"detail":{"data":{"status code":200,"prediction":prediction,"message":"Prediction successful"},"errors":None}}
+    return apiresponse(200,prediction,"Prediction successful")
 

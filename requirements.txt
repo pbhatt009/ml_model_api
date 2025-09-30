@@ -1,15 +1,18 @@
-fastapi
-uvicorn
-pydantic
-pandas
-numpy
-python-dotenv
-scikit-learn
+fastapi==0.116.1
+uvicorn==0.35.0
 
-########## used for complaint classifier ##########
-spacy
+# ML dependencies
+numpy==2.2.6
+pandas==2.2.2
+scikit-learn==1.7.1
+scipy==1.16.1
+joblib==1.5.2
 
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+# NLP dependencies (if you use text classification)
+spacy==3.8.7
+nltk==3.9.1
+textblob==0.19.0
 
-textblob
-joblib
+# Utils
+python-dotenv==1.1.1
+requests==2.32.5

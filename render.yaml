@@ -1,16 +1,9 @@
-# render.yaml
 services:
   - type: web
     name: fastapi-app
     env: python
-    region: oregon      
-    plan: free
-    pythonVersion: 3.11.6
-    buildCommand: |
-      pip install --upgrade pip setuptools wheel
-      pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
-    autoDeploy: true
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: ENV
-        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9

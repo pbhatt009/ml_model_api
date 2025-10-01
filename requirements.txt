@@ -40,7 +40,8 @@ pytz==2025.2
 regex==2025.9.1
 requests==2.32.5
 rich==14.1.0
-scikit-learn==1.2.2
+scikit-learn==1.2.2 --only-binary=:all:
+
 scipy==1.16.1
 setuptools==80.9.0
 shellingham==1.5.4
